@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macie's Riddle Generator</title>
+    <style>
+        h1 {
+            color: rgb(251, 251, 251);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: rgb(112, 185, 209);
+        }
+        #riddle {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: rgb(248, 248, 248);
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        footer
+        a:hover{ font-weight: bolder; font-size: larger;}
+         
+    </style>
+    <script>
+        const riddles = [
+            { question: "What has to be broken before you can use it?", answer: "An egg" },
+            { question: "I’m tall when I’m young, and I’m short when I’m old. What am I?", answer: "A candle" },
+            { question: "What has a head, a tail, is brown, and has no legs?", answer: "A penny" },
+            { question: "The more of this you take, the more you leave behind. What is it?", answer: "Footsteps" },
+            { question: "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?", answer: "An echo" },
+            { question: "What do you call a bear with no teeth?", answer: "A gummy bear" },
+            { question: "What has many rings but no fingers?", answer: "A phone" },
+            { question: "Who has married many women but was never married?", answer: "The priest" },
+            { question: "Forward, I am heavy; backward, I am not. What am I?", answer: "Ton" },
+            { question: "What loses its head in the morning but gets it back at night?", answer: "A pillow" },
+            { question: "What has hands but cannot clap?", answer: "A clock" },
+            { question: "What gets broken without being held?", answer: "A promise" }
+        ];
+
+        let currentRiddle = null;
+
+        function generateRiddle() {
+            const randomIndex = Math.floor(Math.random() * riddles.length);
+            currentRiddle = riddles[randomIndex];
+            document.getElementById("riddle").textContent = currentRiddle.question;
+            document.getElementById("answer").value = "";
+            document.getElementById("result").textContent = "";
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById("answer").value.trim();
+            const result = userAnswer.toLowerCase() === currentRiddle.answer.toLowerCase()
+                ? "Correct! You solved it!"
+                : `Wrong! The correct answer was: ${currentRiddle.answer}`;
+            document.getElementById("result").textContent = result;
+        }
+
+        window.onload = generateRiddle;
+    </script>
+</head>
+<body>
+    <h1>Macie's Riddle Generator</h1>
+    <p id="riddle"></p>
+    <input type="text" id="answer" placeholder="Your answer here">
+    <button onclick="checkAnswer()">Submit</button>
+    <button onclick="generateRiddle()">Next Riddle</button>
+    <p id="result"></p>
+    <img src="https://www.mentalup.co/img/blog/riddles-with-answers.jpg" alt="brain with glasses wondering">
+</body>
+<br> <br>
+<footer>
+    <a style="color: white;" href="../fromscratchpg.html"> Link to From Scratch Page</a>
+</footer>
+</html>
